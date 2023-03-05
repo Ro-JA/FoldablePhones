@@ -1,11 +1,17 @@
 fun main() {
-    val foldablePhone = FoldablePhone()
-    foldablePhone.switchOn()
-    foldablePhone.checkPhoneScreenLight()
-    foldablePhone.unfold()
-    foldablePhone.switchOn()
-    foldablePhone.checkPhoneScreenLight()
+    val winningBid = Bid(5000, "Private Collector")
 
+    println("Item A is sold at ${auctionPrice(winningBid, 2000)}.")
+    println("Item B is sold at ${auctionPrice(null, 3000)}.")
+
+}
+//Item A is sold at 5000.
+//Item B is sold at 3000.
+
+class Bid(val amount: Int, val bidder: String)
+
+fun auctionPrice(bid: Bid?, minimumPrice: Int) : Int {
+    return bid?.amount ?: minimumPrice
 }
 
 open class Phone(var isScreenLightOn: Boolean = false) {
@@ -35,6 +41,5 @@ class FoldablePhone(var isPhoneFoldable: Boolean = true) : Phone() {
     fun unfold() {
         isPhoneFoldable = false
     }
-
-
 }
+
