@@ -1,5 +1,9 @@
-fun main(args: Array<String>) {
-    val foldablePhone = FoldablePhone(true)
+fun main() {
+    val foldablePhone = FoldablePhone()
+    foldablePhone.switchOn()
+    foldablePhone.checkPhoneScreenLight()
+    foldablePhone.unfold()
+    foldablePhone.switchOn()
     foldablePhone.checkPhoneScreenLight()
 
 }
@@ -9,7 +13,7 @@ open class Phone(var isScreenLightOn: Boolean = false) {
         isScreenLightOn = true
     }
 
-    open fun switchOff() {
+    fun switchOff() {
         isScreenLightOn = false
     }
 
@@ -19,13 +23,17 @@ open class Phone(var isScreenLightOn: Boolean = false) {
     }
 }
 
-class FoldablePhone(var isPhoneFoldable: Boolean = false) : Phone(false) {
+class FoldablePhone(var isPhoneFoldable: Boolean = true) : Phone() {
     override fun switchOn() {
-        if (isPhoneFoldable) isScreenLightOn = true
+        if (!isPhoneFoldable) isScreenLightOn = true
     }
 
-    override fun switchOff() {
-        if (!isPhoneFoldable) isScreenLightOn = false
+    fun fold() {
+        isPhoneFoldable = true
+    }
+
+    fun unfold() {
+        isPhoneFoldable = false
     }
 
 
